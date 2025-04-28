@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s25/STARTER-team02
 owner: ucsb-cs156-s25
 repo_name: STARTER-team02
-pull_requests: []
+pull_requests: [{"author":{"id":"MDQ6VXNlcjI2MzQ3ODk3","is_bot":false,"login":"Division7","name":"Daniel Jensen"},"headRefName":"Division7-patch-1","number":69,"title":"Updating CHROMATIC_STATIC for team02 PRs","url":"https://github.com/ucsb-cs156-s25/STARTER-team02/pull/69"}]
