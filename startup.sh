@@ -4,7 +4,7 @@ DATABASE_URL="$DOKKU_POSTGRES_AQUA_URL"
 fi
 
 if [ -z "$DATABASE_URL" ]; then
-echo "DATABASE_URL and DOKKU_POSTGRES_AQUA_URL are empty. Please ensure you have a linked database." >&2
+echo "DATABASE_URL and DOKKU_POSTGRES_AQUA_URL are empty. Please ensure you have a linked database."
 exit 1;
 fi
 
