@@ -20,8 +20,6 @@ jobs:
         with:
           max-timeout: "900"
           polling-interval: "30"
-          exclude-workflow-names: ""
-          exclude-workflow-ids: ""
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           DEBUG: "true"
