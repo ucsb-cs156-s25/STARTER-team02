@@ -32,9 +32,10 @@ jobs:
     steps:
       - name: Check needs results
         env:
-          prnumber: ${{ github.event.pull_request.id }}
+          PR_NUMBER: ${{ github.event.pull_request.id }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-            results=$(gh pr checks $prnumber --json state --jq '.[] | select(.state == "FAILURE")')
+            results=$(gh pr checks $PR_NUMBER --json state --jq '.[] | select(.state == "FAILURE")')
             echo "$results"
             if [ -z "$results" ]; then
             exit 0;
