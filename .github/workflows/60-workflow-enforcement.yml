@@ -30,8 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     if: always()
     steps:
+      - uses: actions/checkout@v4
       - name: Check needs results
-        uses: actions/checkout@v4
         env:
           PR_NUMBER: ${{ github.event.pull_request.id }}
           GH_TOKEN: ${{ github.token }}
