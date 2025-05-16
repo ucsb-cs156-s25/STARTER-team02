@@ -31,5 +31,13 @@ jobs:
     if: always()
     steps:
       - name: Check needs results
-        if: needs.waitForWorkflows.result != 'success'
-        run: exit 1
+        env:
+          prnumber: ${{ github.event.pull_request.id }}
+        run: |
+            results=$(gh pr checks $prnumber --json state --jq '.[] | select(.state == "FAILURE")')
+            echo "$results"
+            if [ -z "$results" ]; then
+            exit 0;
+            else
+            exit 1;
+            fi
