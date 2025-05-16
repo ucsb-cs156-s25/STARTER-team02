@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check needs results
         env:
-          PR_NUMBER: ${{ github.event.pull_request.id }}
+          PR_NUMBER: ${{ github.event.number }}
           GH_TOKEN: ${{ github.token }}
         run: |
             results=$(gh pr checks $PR_NUMBER --json state --jq '.[] | select(.state == "FAILURE")')
