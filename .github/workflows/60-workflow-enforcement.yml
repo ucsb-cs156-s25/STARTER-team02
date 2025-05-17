@@ -1,0 +1,11 @@
+name: 60 - Workflow Status Check Enforcement
+
+on:
+  pull_request:
+
+jobs:
+  wait-for-workflows:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: int128/wait-for-workflows-action@v1
