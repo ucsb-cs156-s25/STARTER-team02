@@ -1,45 +1,11 @@
-name: 60-Workflow Status Check Enforcement
+name: 60 - Workflow Status Check Enforcement
 
 on:
   pull_request:
 
 jobs:
-  waitForWorkflows:
-    name: Wait for workflows
+  wait-for-workflows:
     runs-on: ubuntu-latest
-    if: always()
+    timeout-minutes: 40
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-
-      - name: Wait for workflows
-        id: wait
-        uses: smartcontractkit/chainlink-github-actions/utils/wait-for-workflows@main
-        with:
-          max-timeout: "900"
-          polling-interval: "30"
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-        env:
-          DEBUG: "true"
-
-  afterWait:
-    name: after-wait
-    needs: [waitForWorkflows]
-    runs-on: ubuntu-latest
-    if: always()
-    steps:
-      - uses: actions/checkout@v4
-      - name: Check needs results
-        env:
-          PR_NUMBER: ${{ github.event.number }}
-          GH_TOKEN: ${{ github.token }}
-        run: |
-            results=$(gh pr checks $PR_NUMBER --json state --jq '.[] | select(.state == "FAILURE")')
-            echo "$results"
-            if [ -z "$results" ]; then
-            exit 0;
-            else
-            exit 1;
-            fi
+      - uses: int128/wait-for-workflows-action@v1
