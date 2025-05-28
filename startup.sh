@@ -1,10 +1,11 @@
 #!/bin/bash
 if [ -n "$DOKKU_POSTGRES_AQUA_URL" ]; then
 DATABASE_URL="$DOKKU_POSTGRES_AQUA_URL"
+echo "Using DOKKU_POSTGRES_AQUA_URL. If this is unexpected please check your Dokku config." | tee /dev/stderr
 fi
 
 if [ -z "$DATABASE_URL" ]; then
-echo "DATABASE_URL and DOKKU_POSTGRES_AQUA_URL are empty. Please ensure you have a linked database."
+echo "DATABASE_URL and DOKKU_POSTGRES_AQUA_URL are empty. Please ensure you have a linked database." | tee /dev/stderr
 exit 1;
 fi
 
